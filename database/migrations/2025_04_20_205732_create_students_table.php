@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('group_id') // создаём столбец group_id
+                ->constrained('groups') // создаём внешний ключ на groups(id)
+                ->cascadeOnDelete(); // каскадное удаление при удалении группы
+            $table->string('surname');
+            $table->string('name');
             $table->timestamps();
         });
     }
